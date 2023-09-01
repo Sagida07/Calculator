@@ -1,10 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Calculator" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.Hw7_m2" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="android:statusBarColor">@color/black</item>
     </style>
 
-    <style name="Theme.Calculator" parent="Base.Theme.Calculator" />
+    <style name="Theme.Hw7_m2" parent="Base.Theme.Hw7_m2" />
 </resources>
