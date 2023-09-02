@@ -14,6 +14,23 @@ public class MainActivity extends AppCompatActivity {
     private Boolean isOperationClicked;
     private String operation;
 
+  @SuppressLint("MissingInflatedId")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        textView = findViewById(R.id.text_view);
+        button=findViewById(R.id.btn_next);
+
+        button.setOnClickListener(view -> {
+            String resultat = textView.getText().toString();
+            Intent intent=new Intent(MainActivity.this, TwoActivity.class);
+            intent.putExtra("key", resultat.toString());
+            startActivity(intent);
+            finish();
+        });
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
