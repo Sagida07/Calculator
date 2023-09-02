@@ -1,7 +1,9 @@
-package com.example.calculator;
+package com.example.hw7_m2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,11 +12,12 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private TextView textView;
-    private Integer first, second, sum, difference, product, quotient;
-    private Boolean isOperationClicked;
-    private String operation;
+    private Integer first, second, sum, result, umResult, dResult;
+    private Boolean isOparationClick;
+    private String opeation;
+    private  Button button;
 
-  @SuppressLint("MissingInflatedId")
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,74 +33,82 @@ public class MainActivity extends AppCompatActivity {
             finish();
         });
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        textView = findViewById(R.id.text_view);
-    }
-
-    public void onNumberClick(View view) {
-        String textButton = ((Button) view).getText().toString();
-        if (textButton.equals("AC")) {
-            textView.setText("0");
-            first = 0;
-        } else if (textView.getText().toString().equals("0") || isOperationClicked) {
-            textView.setText(textButton);
-        } else {
-            textView.append(textButton);
-        }
-        isOperationClicked = false;
     }
 
     public void onOperationClick(View view) {
+
         String textButton = ((Button) view).getText().toString();
         switch (textButton) {
             case "+":
+                button.setVisibility(View.INVISIBLE);
                 first = Integer.valueOf(textView.getText().toString());
-                operation = "+";
+                opeation = "+";
                 break;
             case "-":
+                button.setVisibility(View.INVISIBLE);
                 first = Integer.valueOf(textView.getText().toString());
-                operation = "-";
+                opeation = "-";
                 break;
-            case "X":
+            case "x":
+                button.setVisibility(View.INVISIBLE);
                 first = Integer.valueOf(textView.getText().toString());
-                operation = "X";
+                opeation = "x";
                 break;
             case "/":
+                button.setVisibility(View.INVISIBLE);
                 first = Integer.valueOf(textView.getText().toString());
-                operation = "/";
+                opeation = "/";
                 break;
             case "=":
+
+                button.setVisibility(View.VISIBLE);
                 second = Integer.valueOf(textView.getText().toString());
-                switch (operation) {
+                switch (opeation) {
                     case "+":
                         sum = first + second;
                         textView.setText(sum.toString());
                         break;
                     case "-":
-                        difference = first - second;
-                        textView.setText(difference.toString());
+                        result = first - second;
+                        textView.setText(result.toString());
                         break;
-                    case "X":
-                        product = first * second;
-                        textView.setText(product.toString());
+                    case "x":
+                        umResult = first * second;
+                        textView.setText(umResult.toString());
                         break;
                     case "/":
-                        if (second != 0) {
-                            quotient = first / second;
-                            textView.setText(quotient.toString());
-                        } else {
-
+                        if (second!=0){
+                        dResult=first/second;
+                        textView.setText(dResult.toString());
+                        }else if (second==0) {
+                            textView.setText("нельзя делить на ноль");
                         }
                         break;
                 }
+
+                break;
         }
-        isOperationClicked = true;
+        isOparationClick = true;
     }
-     @Override
+
+
+    public void onNumberClick(View view) {
+        String textButton = ((Button) view).getText().toString();
+        if (textButton.equals("AC")) {
+            button.setVisibility(View.INVISIBLE);
+            textView.setText("0");
+            first = 0;
+        } else if (textView.getText().toString().equals("0") || isOparationClick) {
+            button.setVisibility(View.INVISIBLE);
+            textView.setText(textButton);
+        } else {
+            button.setVisibility(View.INVISIBLE);
+            textView.append(textButton);
+        }
+        isOparationClick = false;
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
     }
